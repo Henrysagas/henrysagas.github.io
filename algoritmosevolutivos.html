@@ -4,141 +4,226 @@
   <meta charset="UTF-8">
   <title>Algoritmos Genéticos</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f4f8;
       margin: 0;
-      padding: 20px;
+      background: #e6ecf2;
       color: #333;
+    }
+
+    header {
+      background-color: #003366;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav {
+      background-color: #004080;
+      padding: 15px;
+      width: 250px;
+      float: left;
+      height: 100vh;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
+
+    nav a:hover {
+      background-color: #0059b3;
+    }
+
+    main {
+      margin-left: 270px;
+      padding: 30px;
     }
 
     h1 {
       color: #003366;
-      text-align: center;
-      margin-bottom: 40px;
     }
 
     details {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 10px auto;
-      padding: 15px 20px;
-      max-width: 800px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      background-color: white;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     summary {
       font-size: 1.2em;
       font-weight: bold;
-      cursor: pointer;
       color: #004080;
+      cursor: pointer;
       outline: none;
     }
 
-    details[open] summary {
-      color: #00264d;
+    summary::marker {
+      color: #0066cc;
     }
 
     ul, ol {
       margin-left: 20px;
+      margin-top: 10px;
     }
 
     p {
       margin-top: 10px;
     }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f0f4f8;
+      font-size: 0.9em;
+      margin-top: 40px;
+      color: #666;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Algoritmos Genéticos</h1>
+  <header>
+    <h1>Algoritmos Genéticos y Evolutivos</h1>
+  </header>
 
-  <details open>
-    <summary>¿Qué es un algoritmo genético?</summary>
-    <p>
-      Un <strong>algoritmo genético</strong> es una técnica de <strong>inteligencia artificial inspirada en la evolución biológica</strong>. Emplea procesos como la <strong>reproducción, mutación, recombinación</strong> y <strong>selección natural</strong> para <strong>resolver problemas complejos</strong> mediante el perfeccionamiento progresivo de soluciones candidatas.
-    </p>
-    <p>
-      Se basa en la teoría darwiniana: las soluciones más aptas sobreviven y se combinan para producir nuevas generaciones cada vez mejores.
-    </p>
-  </details>
+  <nav>
+    <a href="#que-es">¿Qué es?</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#historia">Historia</a>
+    <a href="#aplicaciones">Aplicaciones</a>
+    <a href="#biologia">Inspiración Biológica</a>
+    <a href="#funcionamiento">Funcionamiento</a>
+    <a href="#ejemplo">Ejemplo</a>
+    <a href="#futuro">Futuro</a>
+    <a href="hill-climbing.html">➤ Hill Climbing</a>
+    <a href="integracion.html">➤ Integración Genético + Hill Climbing</a>
+  </nav>
 
-  <details>
-    <summary>Beneficios</summary>
-    <ul>
-      <li>Mayor flexibilidad</li>
-      <li>Mejor optimización</li>
-      <li>Soluciones múltiples</li>
-    </ul>
-  </details>
+  <main>
+    <section id="que-es">
+      <details open>
+        <summary>¿Qué es un algoritmo genético?</summary>
+        <p>
+          Un <strong>algoritmo genético</strong> es una técnica de optimización inspirada en los principios de la evolución natural. Está basada en mecanismos como la <em>selección natural</em>, <em>mutación genética</em>, y <em>cruzamiento entre individuos</em>.
+        </p>
+        <p>
+          Estos algoritmos operan sobre una población de posibles soluciones a un problema, que evolucionan a través de generaciones para encontrar una solución óptima o casi óptima. Se utilizan representaciones similares al ADN llamadas "cromosomas" que codifican la solución.
+        </p>
+        <p>
+          A lo largo de las generaciones, los individuos mejor adaptados tienen más posibilidades de transmitir sus características, lo que mejora gradualmente la calidad de las soluciones.
+        </p>
+      </details>
+    </section>
 
-  <details>
-    <summary>Historia y evolución</summary>
-    <h3>Arthur Samuel (1959)</h3>
-    <ul>
-      <li>Programa para jugar damas</li>
-      <li>Asignaba valores aleatorios y aprendía observando jugadores</li>
-      <li>Pionero del aprendizaje automático</li>
-    </ul>
+    <section id="beneficios">
+      <details>
+        <summary>Beneficios</summary>
+        <ul>
+          <li><strong>Flexibilidad:</strong> No requieren derivadas ni conocimiento profundo del problema.</li>
+          <li><strong>Robustez:</strong> Pueden adaptarse a problemas dinámicos y ruidosos.</li>
+          <li><strong>Diversidad:</strong> Trabajan con múltiples soluciones simultáneamente, evitando caer en óptimos locales.</li>
+          <li><strong>Paralelización:</strong> Su naturaleza poblacional permite procesamiento paralelo eficiente.</li>
+        </ul>
+      </details>
+    </section>
 
-    <h3>John Holland (1975)</h3>
-    <ul>
-      <li>Primer programa de aprendizaje evolutivo</li>
-      <li>Introdujo el concepto de algoritmos genéticos</li>
-      <li>Uso de selección, cruzamiento y mutación</li>
-    </ul>
-  </details>
+    <section id="historia">
+      <details>
+        <summary>Historia</summary>
+        <h3>Arthur Samuel (1959)</h3>
+        <ul>
+          <li>Desarrolló uno de los primeros programas que aprendía por sí mismo (jugador de damas).</li>
+          <li>Aplicó técnicas rudimentarias de optimización y aprendizaje.</li>
+        </ul>
+        <h3>John Holland (1975)</h3>
+        <ul>
+          <li>Formalizó el concepto de algoritmos genéticos.</li>
+          <li>Propuso un marco basado en biología para resolver problemas computacionales complejos.</li>
+        </ul>
+      </details>
+    </section>
 
-  <details>
-    <summary>Aplicaciones</summary>
-    <ul>
-      <li>Diseño de antenas espaciales</li>
-      <li>Horarios escolares</li>
-      <li>Optimización de redes neuronales</li>
-      <li>Procesos industriales</li>
-      <li>Diagnóstico médico</li>
-      <li>Robótica e IA para videojuegos</li>
-    </ul>
-  </details>
+    <section id="aplicaciones">
+      <details>
+        <summary>Aplicaciones</summary>
+        <ul>
+          <li>Diseño automático de estructuras aeroespaciales (antenas, alas, etc.).</li>
+          <li>Planificación de horarios y tareas en sistemas educativos o fábricas.</li>
+          <li>Optimización de hiperparámetros en redes neuronales profundas.</li>
+          <li>Diagnóstico médico basado en datos históricos.</li>
+          <li>Diseño de robots y estrategias de comportamiento autónomo.</li>
+          <li>IA para videojuegos con enemigos adaptativos o evolución de mapas.</li>
+        </ul>
+      </details>
+    </section>
 
-  <details>
-    <summary>Inspiración biológica</summary>
-    <ul>
-      <li><strong>Selección natural:</strong> Supervivencia del más apto</li>
-      <li><strong>Reproducción:</strong> Generación de nuevos individuos</li>
-      <li><strong>Cruzamiento:</strong> Combinación de soluciones</li>
-      <li><strong>Mutación:</strong> Cambios aleatorios para mantener diversidad</li>
-    </ul>
-  </details>
+    <section id="biologia">
+      <details>
+        <summary>Inspiración Biológica</summary>
+        <ul>
+          <li><strong>Selección natural:</strong> Los más aptos sobreviven y se reproducen.</li>
+          <li><strong>Mutación:</strong> Introduce variabilidad genética al azar.</li>
+          <li><strong>Cruzamiento (Crossover):</strong> Intercambio de genes entre padres para formar hijos.</li>
+          <li><strong>Herencia genética:</strong> Los rasgos útiles se conservan en la población.</li>
+        </ul>
+      </details>
+    </section>
 
-  <details>
-    <summary>Funcionamiento</summary>
-    <ol>
-      <li><strong>Inicialización:</strong> Crear población aleatoria</li>
-      <li><strong>Evaluación:</strong> Medir desempeño de cada solución</li>
-      <li><strong>Selección:</strong> Elegir las mejores para reproducirse</li>
-      <li><strong>Cruzamiento:</strong> Combinar padres para generar hijos</li>
-      <li><strong>Mutación:</strong> Introducir pequeños cambios</li>
-      <li><strong>Iteración:</strong> Repetir hasta encontrar una solución óptima</li>
-    </ol>
-  </details>
+    <section id="funcionamiento">
+      <details>
+        <summary>Funcionamiento del Algoritmo</summary>
+        <ol>
+          <li><strong>Inicialización:</strong> Generar aleatoriamente una población inicial de soluciones.</li>
+          <li><strong>Evaluación:</strong> Calcular la aptitud o "fitness" de cada individuo según una función objetivo.</li>
+          <li><strong>Selección:</strong> Escoger a los individuos más aptos para reproducirse.</li>
+          <li><strong>Cruzamiento:</strong> Mezclar la información genética de los padres para formar hijos.</li>
+          <li><strong>Mutación:</strong> Alterar partes del cromosoma para mantener la diversidad.</li>
+          <li><strong>Reemplazo:</strong> Formar la nueva generación y repetir el proceso.</li>
+        </ol>
+      </details>
+    </section>
 
-  <details>
-    <summary>Ejemplo: Horario escolar</summary>
-    <p>
-      Un algoritmo genético puede generar, evaluar y seleccionar configuraciones de horarios que cumplan con restricciones de profesores, materias, aulas y disponibilidad.
-    </p>
-  </details>
+    <section id="ejemplo">
+      <details>
+        <summary>Ejemplo: Generación de horarios escolares</summary>
+        <p>
+          Un algoritmo genético puede generar automáticamente horarios que cumplen múltiples restricciones: disponibilidad de profesores, materias, aulas, horas de clase y preferencias. Las soluciones se evalúan en base a cuántas restricciones cumplen, y el algoritmo busca las que minimicen conflictos.
+        </p>
+      </details>
+    </section>
 
-  <details>
-    <summary>Perspectiva futura</summary>
-    <ul>
-      <li>Combinación con redes neuronales</li>
-      <li>Optimización de arquitecturas y parámetros</li>
-      <li>Desarrollo de sistemas autónomos más inteligentes</li>
-    </ul>
-  </details>
+    <section id="futuro">
+      <details>
+        <summary>Perspectiva Futura</summary>
+        <ul>
+          <li>Fusión con técnicas de aprendizaje profundo para mejorar arquitecturas de redes neuronales.</li>
+          <li>Automatización de procesos complejos mediante aprendizaje evolutivo.</li>
+          <li>Robots que aprenden y se adaptan a entornos cambiantes sin intervención humana.</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 - Proyecto de Algoritmos Evolutivos | Desarrollado por Estudiantes de IA
+  </footer>
 
 </body>
 </html>
