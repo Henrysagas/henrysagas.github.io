@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hill Climbing - Algoritmo de Optimización</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 3px solid #2980b9;
+      padding-bottom: 10px;
+    }
+    h2 {
+      margin-top: 40px;
+      color: #34495e;
+    }
+    p {
+      margin-bottom: 15px;
+      font-size: 1.05em;
+    }
+    ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .advantages {
+      color: #27ae60;
+      font-weight: bold;
+    }
+    .disadvantages {
+      color: #c0392b;
+      font-weight: bold;
+    }
+    pre {
+      background-color: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.9em;
+      margin-bottom: 30px;
+    }
+    code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95em;
+    }
+    .section {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hill Climbing - Algoritmo de Optimización</h1>
+
+  <section class="section">
+    <h2>Introducción</h2>
+    <p>El <strong>Hill Climbing</strong> es un algoritmo de optimización heurística utilizado en problemas donde se busca maximizar o minimizar una función objetivo. Es una técnica de búsqueda basada en iteraciones que mejora progresivamente una solución inicial explorando soluciones cercanas y eligiendo la mejor alternativa en cada paso.</p>
+  </section>
+
+  <section class="section">
+    <h2>Concepto General</h2>
+    <p>El algoritmo Hill Climbing se inspira en el concepto de escalar una montaña: partimos de una posición inicial y realizamos pequeños cambios en la solución actual con el objetivo de encontrar una mejor alternativa. En cada iteración:</p>
+    <ul>
+      <li>Se generan soluciones vecinas.</li>
+      <li>Se compara su desempeño con la solución actual.</li>
+      <li>Se selecciona la mejor solución encontrada.</li>
+      <li>Si no hay mejoras, se detiene el proceso.</li>
+    </ul>
+    <p>Este algoritmo es eficiente para encontrar óptimos locales, aunque puede quedar atrapado en soluciones subóptimas si la función objetivo tiene múltiples máximos o mínimos.</p>
+  </section>
+
+  <section class="section">
+    <h2>Ventajas y Desventajas</h2>
+    <p class="advantages">✅ Ventajas:</p>
+    <ul>
+      <li>Simple de implementar.</li>
+      <li>Bajo consumo de recursos computacionales.</li>
+      <li>Útil en problemas de búsqueda en grandes espacios de soluciones.</li>
+    </ul>
+    <p class="disadvantages">❌ Desventajas:</p>
+    <ul>
+      <li>Puede quedarse atrapado en óptimos locales.</li>
+      <li>No garantiza encontrar la mejor solución global.</li>
+      <li>No explora todas las posibilidades, lo que lo hace menos efectivo en funciones complejas.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Ejemplo de Implementación en Python</h2>
+    <p>Aquí tienes un ejemplo práctico de cómo implementar Hill Climbing en Python para optimizar una función matemática:</p>
+    <pre><code>import numpy as np
+
+def objective_function(x):
+    """Función objetivo: maximizar f(x) = -x**2 + 4*x"""
+    return -x**2 + 4*x  
+
+def hill_climbing(start_x, step_size=0.1, max_iterations=100):
+    x = start_x
+    for _ in range(max_iterations):
+        neighbors = [x + step_size, x - step_size]
+        best_neighbor = max(neighbors, key=objective_function)
+
+        if objective_function(best_neighbor) &gt; objective_function(x):
+            x = best_neighbor
+        else:
+            break  # Óptimo local alcanzado
+            
+    return x, objective_function(x)
+
+best_x, best_value = hill_climbing(start_x=0)
+print(f"Máximo encontrado en x={best_x} con valor {best_value}")</code></pre>
+  </section>
+
+  <section class="section">
+    <h2>Aplicaciones de Hill Climbing</h2>
+    <ul>
+      <li>Optimización de hiperparámetros en modelos de Machine Learning.</li>
+      <li>Optimización de rutas en problemas logísticos.</li>
+      <li>Ajuste de configuraciones en sistemas de inteligencia artificial.</li>
+      <li>Resolución de problemas de planificación en sistemas operativos y automatización.</li>
+    </ul>
+  </section>
+
+</body>
+</html>
